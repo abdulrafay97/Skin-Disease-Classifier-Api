@@ -49,5 +49,3 @@ class PythonPredictor:
         allClasses.sort()
         labelPred = allClasses[predicted]
         return labelPred
-
-obj = PythonPredictor()  

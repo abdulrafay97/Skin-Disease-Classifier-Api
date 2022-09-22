@@ -1,5 +1,4 @@
 import torch
-from torchvision import transforms
 import torch.nn as nn
 from PIL import Image
 from torchvision import models, transforms

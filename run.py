@@ -5,7 +5,7 @@ from helper import bytes_to_img
 from syndicai import PythonPredictor
 
 
-sample_data = "D:\FYP-ALL DATA\Dataset\\24_Disease\\test\Herpes Simplex\\2555.jpg"
+sample_data = "https://cdnrmi-19948.kxcdn.com/cdn/ff/UQPN3JXybcWFeHaZe0vM5SwYJBsiFv9VborNYeO2wNE/1592998980/public/Disease-2020-06/herpes-simplex.jpg"
 output_dir = "./output"
 save_response = True
 

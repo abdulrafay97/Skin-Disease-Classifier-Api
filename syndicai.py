@@ -4,10 +4,8 @@ import torch.nn as nn
 from PIL import Image
 import requests
 from io import BytesIO
-import pytest
 
 class PythonPredictor:
-    @pytest.fixture(autouse=True)
     def  __init__(self, config):
         self.normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                     std=[0.229, 0.224, 0.225])

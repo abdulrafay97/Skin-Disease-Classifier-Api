@@ -49,7 +49,6 @@ class PythonPredictor:
         img_pil = Image.open(BytesIO(image))
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)
-        print(type(img_tensor))
         out = self.predictLabel(img_tensor)
         _, predicted = torch.max(out.data, 1)
         allClasses.sort()

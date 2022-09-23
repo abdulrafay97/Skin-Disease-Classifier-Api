@@ -37,7 +37,7 @@ class PythonPredictor:
         img = torch.reshape(file , (1, 3, image_size, image_size))
         return self.model(img)
 
-    def predict(self, img):
+    def predict(self, payload):
         allClasses = ['Basal Cell Carcinoma','Dariers', 'Hailey-Hailey Disease', 'Impetigo', 'Larva Migrans',        
             'Leprosy Borderline', 'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
             'Lupus Erythematosus Chronicus Discoides', 'Melanoma', 'Molluscum Contagiosum',
@@ -45,7 +45,7 @@ class PythonPredictor:
             'Tinea Corporis', 'Tinea Nigra', 'Tungiasis', 'Epidermolysis Bullosa Pruriginosa',
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
-        image = requests.get(img["url"]).content
+        image = requests.get(payload["url"]).content
         img_pil = Image.open(BytesIO(image))
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)

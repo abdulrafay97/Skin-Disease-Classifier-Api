@@ -45,7 +45,7 @@ class PythonPredictor:
             'Tinea Corporis', 'Tinea Nigra', 'Tungiasis', 'Epidermolysis Bullosa Pruriginosa',
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
-        image = payload["url"]
+        image = requests.get(payload["url"])
         img_pil = Image.open(BytesIO(image.read()))
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)

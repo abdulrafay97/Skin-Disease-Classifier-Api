@@ -1,11 +1,12 @@
 import os
 import argparse
-
+import warnings
+warnings.filterwarnings("ignore")
 from helper import bytes_to_img
 from syndicai import PythonPredictor
 
-
-sample_data = "https://cdnrmi-19948.kxcdn.com/cdn/ff/UQPN3JXybcWFeHaZe0vM5SwYJBsiFv9VborNYeO2wNE/1592998980/public/Disease-2020-06/herpes-simplex.jpg"
+f=open("D:\FYP-ALL DATA\Dataset\\24_Disease\\test\Hailey-Hailey Disease\\2368.jpg","rb")
+sample_data = f
 output_dir = "./output"
 save_response = True
 
@@ -28,7 +29,7 @@ def run(opt):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--image', default=sample_data, type=str, help='URL to a sample input data')
+    parser.add_argument('--image', default=sample_data, type=bytes, help='URL to a sample input data')
     parser.add_argument('--save', action='store_true', help='Save output image in the ./output directory')
     parser.add_argument('--response', default=True, type=bool, help='Print a response in the terminal')
     opt = parser.parse_args()

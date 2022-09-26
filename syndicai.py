@@ -46,11 +46,5 @@ class PythonPredictor:
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
         image = requests.get(payload["url"]).content
-        img_pil = Image.open(BytesIO(image))
-        img_tensor = self.data_transforms(img_pil)
-        img_tensor.unsqueeze_(0)
-        out = self.predictLabel(img_tensor)
-        _, predicted = torch.max(out.data, 1)
-        allClasses.sort()
-        labelPred = allClasses[predicted]
-        return labelPred
+        
+        return image

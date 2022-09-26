@@ -38,6 +38,7 @@ class PythonPredictor:
         return self.model(img)
 
     def predict(self, payload):
+        print("PAYLOAD: ", payload)
         allClasses = ['Basal Cell Carcinoma','Dariers', 'Hailey-Hailey Disease', 'Impetigo', 'Larva Migrans',        
             'Leprosy Borderline', 'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
             'Lupus Erythematosus Chronicus Discoides', 'Melanoma', 'Molluscum Contagiosum',
@@ -46,6 +47,7 @@ class PythonPredictor:
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
         image = requests.get(payload["url"])
+        print("IMAGE DATA: ", image)
         img_pil = Image.open(BytesIO(image.read()))
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)

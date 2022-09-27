@@ -29,7 +29,7 @@ class PythonPredictor:
             nn.Dropout(0.4),
             nn.Linear(128, 24),).to(device)
 
-        self.model.load_state_dict(torch.load('enet.h5' , map_location=torch.device('cpu')))
+        self.model.load_state_dict(torch.load('D:\syndicai\API\enet.h5' , map_location=torch.device('cpu')))
         self.model.eval()
 
     def predictLabel(self, file):
@@ -37,8 +37,7 @@ class PythonPredictor:
         img = torch.reshape(file , (1, 3, image_size, image_size))
         return self.model(img)
 
-    def predict(self, payload):
-        print("PAYLOAD: ", payload)
+    def predict(self, img):
         allClasses = ['Basal Cell Carcinoma','Dariers', 'Hailey-Hailey Disease', 'Impetigo', 'Larva Migrans',        
             'Leprosy Borderline', 'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
             'Lupus Erythematosus Chronicus Discoides', 'Melanoma', 'Molluscum Contagiosum',
@@ -46,9 +45,8 @@ class PythonPredictor:
             'Tinea Corporis', 'Tinea Nigra', 'Tungiasis', 'Epidermolysis Bullosa Pruriginosa',
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
-        image = requests.get(payload["url"])
-        print("IMAGE DATA: ", image)
-        img_pil = Image.open(BytesIO(image.read()))
+        image = requests.get(img["url"]).content
+        img_pil = Image.open(BytesIO(image))
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)
         out = self.predictLabel(img_tensor)
@@ -56,3 +54,4 @@ class PythonPredictor:
         allClasses.sort()
         labelPred = allClasses[predicted]
         return labelPred
+  

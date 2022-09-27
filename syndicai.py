@@ -29,7 +29,7 @@ class PythonPredictor:
             nn.Dropout(0.4),
             nn.Linear(128, 24),).to(device)
 
-        self.model.load_state_dict(torch.load('D:\syndicai\API\enet.h5' , map_location=torch.device('cpu')))
+        self.model.load_state_dict(torch.load('enet.h5' , map_location=torch.device('cpu')))
         self.model.eval()
 
     def predictLabel(self, file):

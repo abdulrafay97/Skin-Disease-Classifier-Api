@@ -37,7 +37,7 @@ class PythonPredictor:
         img = torch.reshape(file , (1, 3, image_size, image_size))
         return self.model(img)
 
-    def predict(self, img):
+    def predict(self, payload):
         allClasses = ['Basal Cell Carcinoma','Dariers', 'Hailey-Hailey Disease', 'Impetigo', 'Larva Migrans',        
             'Leprosy Borderline', 'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
             'Lupus Erythematosus Chronicus Discoides', 'Melanoma', 'Molluscum Contagiosum',

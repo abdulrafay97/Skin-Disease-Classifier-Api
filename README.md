@@ -1,5 +1,5 @@
 # Skin-Disease-Classifier-Api
-# Efficient-Net B2 Classifier
+-> Efficient-Net B2 Classifier
 [![PyTorch](https://img.shields.io/badge/Framework-PyTorch-79FFE1)](https://pytorch.org)
 ![Computer Vision](https://img.shields.io/badge/Type-Computer%20Vision-79FFE1)
 

@@ -4,6 +4,7 @@ import torch.nn as nn
 from PIL import Image
 import requests
 from io import BytesIO
+from helper import bytes_to_img
 
 class PythonPredictor:
     def  __init__(self, config):
@@ -46,7 +47,7 @@ class PythonPredictor:
             'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
             'Pediculosis Capitis']
         image_str = requests.get(payload["url"]).content
-        img_pil = Image.open(BytesIO(image))
+        img_pil = bytes_to_img(image_str[0])
         img_tensor = self.data_transforms(img_pil)
         img_tensor.unsqueeze_(0)
         out = self.predictLabel(img_tensor)

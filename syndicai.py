@@ -54,5 +54,5 @@ class PythonPredictor:
         _, predicted = torch.max(out.data, 1)
         allClasses.sort()
         labelPred = allClasses[predicted]
-        return labelPred, out
+        return labelPred
   

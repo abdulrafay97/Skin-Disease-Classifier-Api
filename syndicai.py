@@ -28,7 +28,7 @@ class PythonPredictor:
             nn.ReLU(),
             nn.BatchNorm1d(num_features=128),
             nn.Dropout(0.4),
-            nn.Linear(128, 24),).to(device)
+            nn.Linear(128, 31),).to(device)
 
         self.model.load_state_dict(torch.load('enet.h5' , map_location=torch.device('cpu')))
         self.model.eval()
@@ -39,13 +39,17 @@ class PythonPredictor:
         return self.model(img)
 
     def predict(self, payload):
-        allClasses = ['Basal Cell Carcinoma','Dariers', 'Hailey-Hailey Disease', 'Impetigo', 'Larva Migrans',        
-            'Leprosy Borderline', 'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
-            'Lupus Erythematosus Chronicus Discoides', 'Melanoma', 'Molluscum Contagiosum',
-            'Mycosis Fungoides', 'Pityriasis Rosea', 'Porokeratosis Actinic' , 'Psoriasis',
-            'Tinea Corporis', 'Tinea Nigra', 'Tungiasis', 'Epidermolysis Bullosa Pruriginosa',
-            'Herpes Simplex', 'Neurofibromatosis', 'Papilomatosis Confluentes And Reticulate',
-            'Pediculosis Capitis']
+        allClasses = ['Actinic Keratosis', 'Basal Cell Carcinoma',
+	      'Dariers', 'Dermatofibroma',
+	      'Epidermolysis Bullosa Pruriginosa', 'Hailey-Hailey Disease',
+	      'Herpes Simplex', 'Impetigo', 'Larva Migrans', 'Leprosy Borderline',
+	      'Leprosy Lepromatous', 'Leprosy Tuberculoid', 'Lichen Planus',
+	      'Lupus Erythematosus Chronicus Discoides', 'Melanoma',
+	      'Molluscum Contagiosum', 'Mycosis Fungoides', 'Neurofibromatosis',
+	      'Nevus', 'Papilomatosis Confluentes And Reticulate', 'Pediculosis Capitis',
+	      'Pigmented Benign Keratosis', 'Pityriasis Rosea', 'Porokeratosis Actinic',
+	      'Psoriasis', 'Seborrheic Keratosis', 'Squamous Cell Carcinoma', 'Tinea Corporis',
+	      'Tinea Nigra', 'Tungiasis', 'Vascular Lesion']
         image_str = payload["url"]
         img_pil = bytes_to_img(image_str)
         img_tensor = self.data_transforms(img_pil[0])
@@ -55,4 +59,3 @@ class PythonPredictor:
         allClasses.sort()
         labelPred = allClasses[predicted]
         return labelPred
-  
